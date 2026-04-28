@@ -21,3 +21,26 @@
         opacity: 0;
     }
 }
+
+@keyframes shine {
+    0%, 35% {
+        background-position: 0 0, -200% 0;
+    }
+
+    55% {
+        background-position: 0 0, 200% 0;
+    }
+
+    100% {
+        background-position: 0 0, 200% 0;
+    }
+}
+@keyframes hue-title {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(18deg);
+    }
+}

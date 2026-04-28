@@ -4,39 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techniplayer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js" defer=""></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <div id="player">
-            <img id="song-cover" alt="Song Cover">
-            <div id="song-info">
-                <h2 id="song-title">New Life</h2>
-                <div id="song-metadata">
-                    <p id="song-author">Depeche Mode</p>
-                    <p id="song-adder">CosmicBit</p>
-                    <p id="song-plays">143</p>
+    <div class="stack">
+        <header>
+            <div class="marquee">
+                <div id="titles">
+                    <h1 class="title fx-title" data-text="Techniplayer">
+                        Techniplayer 
+                    </h1>
+                    <h1 class="title fx-title" data-text="Techniplayer">
+                        Techniplayer
+                    </h1>
+                    <h1 class="title fx-title" data-text="Techniplayer">
+                        Techniplayer
+                    </h1>
                 </div>
             </div>
-            <div id="song-controls">
-                <button id="open-video">
-                    <a target="_blank">
-                        <img src="assets/open-vid.svg" alt="Open video in new tab">
-                    </a>
-                </button>
-                <button id="go-back">
-                    <img src="assets/back-arrow.svg" alt="Go Back">
-                </button>
-                <button id="pause">
-                    <img src="assets/play.svg" alt="Pause Song">
-                </button>
-                <button id="skip">
-                    <img src="assets/forward-arrow.svg" alt="Skip Song">
-                </button>
+        </header>
+        <main class="container glass-card video">
+            <div id="player">
+                <img id="song-cover" src="https://i1.sndcdn.com/artworks-Pp1UmhjBpVrt-0-t500x500.jpg" alt="Song Cover">
+                <section id="meta">
+                    <div id="title-wrap" class="collapser">
+                        <h2 id="song-title">New Life</h2>
+                    </div>
+                    <div id="user-wrap" class="collapser">
+                        <div id="uploader">
+                            <p id="song-author">Depeche Mode</p>
+                            <p id="song-adder" class="pill">
+                                <img src="assets/user.svg">
+                                CosmicBit
+                            </p>
+                            <p id="song-plays" class="pill">
+                                <img src="assets/note.svg">
+                                143
+                            </p>
+                        </div>
+                    </div>
+                    <div id="song-controls" class="glass-card">
+                        <div class="playback">
+                            <div class="time">0:00</div>
+                            <input type="range" id="seek" min="0" max="224" value="0">
+                            <div class="time">-3:44</div>
+                        </div>
+                        <div class="buttons">
+                            <button id="open-video" class="button" aria-label="Open video in new tab">
+                                <a target="_blank">
+                                    <img src="assets/open-vid.svg">
+                                </a>
+                            </button>
+                            <div class="control-group">
+                                <button id="go-back" class="button" aria-label="Go Back">
+                                    <img src="assets/back-arrow.svg">
+                                </button>
+                                <button id="pause" class="button" aria-label="Pause Song">
+                                    <img src="assets/play.svg">
+                                </button>
+                                <button id="skip" class="button" aria-label="Skip Song">
+                                    <img src="assets/forward-arrow.svg">
+                                </button>
+                            </div>
+                            <button id="volume-button" class="button" aria-label="Volume">
+                                <img src="assets/volume.svg">
+                            </button>
+                        </div>
+                        <div id="history-wrap">
+                            <button id="return-latest" class="button history-button">Wróć do ostatniego utworu</button>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
     <div id="notifications"></div>
 
     <script type="module" src="./js/main.js" defer></script>
