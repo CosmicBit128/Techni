@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techniplayer</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div id="player">
+            <img id="song-cover" alt="Song Cover">
+            <div id="song-info">
+                <h2 id="song-title">New Life</h2>
+                <div id="song-metadata">
+                    <p id="song-author">Depeche Mode</p>
+                    <p id="song-adder">CosmicBit</p>
+                    <p id="song-plays">143</p>
+                </div>
+            </div>
+            <div id="song-controls">
+                <button id="open-video">
+                    <a target="_blank">
+                        <img src="assets/open-vid.svg" alt="Open video in new tab">
+                    </a>
+                </button>
+                <button id="go-back">
+                    <img src="assets/back-arrow.svg" alt="Go Back">
+                </button>
+                <button id="pause">
+                    <img src="assets/play.svg" alt="Pause Song">
+                </button>
+                <button id="skip">
+                    <img src="assets/forward-arrow.svg" alt="Skip Song">
+                </button>
+            </div>
+        </div>
+    </main>
+    <div id="notifications"></div>
+
+    <script type="module" src="./js/main.js" defer></script>
+</body>
+</html>

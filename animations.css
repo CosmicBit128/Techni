@@ -1,0 +1,23 @@
+@keyframes slide-in {
+    0% {
+        left: -300px;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        left: -300px;
+        opacity: 0;
+    }
+}

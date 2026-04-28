@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('./animations.css');
+
+:root {
+    --primary: #26202a;
+    --secondary: #282327;
+    --border-color: #f0f0f0;
+    --primary-text-color: #f0f0f0;
+    --secondary-text-color: #c8c8c8;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+#notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    max-width: 40%;
+}
+
+.notification {
+    background-color: var(--secondary);
+    color: white;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    position: relative;
+    animation: slide-in 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.notification h3, .notification p {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Song Player
+*/
+
+button {
+    background-color: var(--secondary);
+    color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 5px 6px 5px 6px;
+}
+
+#player {
+    display: grid;
+    background-color: var(--primary);
+    
+}
+
+#song-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#song-metadata {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+#song-author, #song-adder, #song-plays {
+    color: var(--secondary-text-color);
+}
+
+#song-adder, #song-plays {
+    background-color: var(--secondary);
+    color: var(--secondary-text-color);
+    padding: 3px 8px 0 8px;
+    font-size: 13px;
+    border: var(--border-color);
+    border-radius: 64px;
+}
