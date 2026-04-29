@@ -50,3 +50,15 @@ export function fisher_yates_shuffle(arr) {
   	}
   	return arr;
 }
+
+// Formatting time
+export function format_time(sec) {
+    if (!Number.isFinite(sec) || sec < 0) sec = 0;
+    sec = Math.floor(sec);
+    const h = sec >= 3600 ? -1 : Math.floor(sec / 3600);
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return h < 0 ?
+        `${h}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}` :
+        `${m}:${s.toString().padStart(2, "0")}`;
+}
