@@ -1,13 +1,11 @@
 import {
     API_ROOT,
-    DEBUG,
-    log_debug,
-    warn_debug,
-    error_debug,
-    debug_error
+    debug_log,
+    debug_warn,
+    debug_error,
 } from "./globals.js";
 
-async function fetchJson(baseUrl) {
+async function fetch_json(baseUrl) {
     const cacheBust = `_ts=${Date.now()}`;
     const url = baseUrl.includes("?")
         ? `${baseUrl}&${cacheBust}`
@@ -32,19 +30,19 @@ async function fetchJson(baseUrl) {
 
 
 // Init session, returns { id } (session_id)
-export async function initSession() {
+export async function init_session() {
     const url = `${API_ROOT}?init`;
-    const data = await fetchJson(url);
-    console.log("INIT:", data);
+    const data = await fetch_json(url);
+    debug_log("Init:", data);
     return data.id;
 }
 
 // get_rndt_user={user_id}
 // Returns random tracks for given user.
 // { code: "ok", tracks: [track, ...], track_count: n }
-export async function getTracksForUser(userId) {
+export async function get_tracks_for_user(userId) {
   const url = `${API_ROOT}?get_rndt_user=${encodeURIComponent(userId)}`;
-  const data = await fetchJson(url);
+  const data = await fetch_json(url);
   debug_log("Tracks for user:", userId, data);
   return {
     tracks: data.tracks || [],
@@ -54,9 +52,9 @@ export async function getTracksForUser(userId) {
 
 // Returns list of users:
 // { code: "ok", users: [{ user_id, username, ... }], users_count: n }
-export async function getUsers() {
+export async function get_users() {
   const url = `${API_ROOT}?get_users`;
-  const data = await fetchJson(url);
+  const data = await fetch_json(url);
   debug_log("All Users:", data);
   return data;
 }
@@ -64,9 +62,9 @@ export async function getUsers() {
 // Returns playlists, e.g.:
 // Api return: { code: "ok", playlists: [{ id / playlist_id, name / playlist_name / title, ... }], playlist_count: n }
 // Normalized: { count: number, playlists: [{ id: string, name: string, ...original }]}
-export async function getPlaylists() {
+export async function get_playlists() {
     const url = `${API_ROOT}?get_playlists`;
-    const data = await fetchJson(url);
+    const data = await fetch_json(url);
     debug_log("All Playlists:", data);
 
     const raw = Array.isArray(data.playlists)
@@ -79,11 +77,7 @@ export async function getPlaylists() {
         const id = pl.id ?? pl.playlist_id ?? idx;
         const name = pl.name ?? pl.playlist_name ?? pl.title ?? `Playlista ${id}`;
 
-        return {
-            id: String(id),
-            name,
-            ...pl,
-        };
+        return { id: String(id), name, ...pl };
     });
 
     return {
@@ -96,12 +90,12 @@ export async function getPlaylists() {
 // Api return: { code: "ok", songs: [{ id, played }, ...], song_count: n }
 // or just the array [{ id, played }, ...] (who the fuck made this system bro wtf you mean "or"?)
 // Normalized: { entries: [{ id: string, played: number, ...raw }], count: number }
-export async function getAllSongsInPlaylist(playlistId) {
+export async function get_playlist_songs(playlistId) {
     const url = `${API_ROOT}?get_all_songs_in_playlist=${encodeURIComponent(
         playlistId
     )}`;
-    const data = await fetchJson(url);
-    console.log("ALL SONGS IN PLAYLIST:", playlistId, data);
+    const data = await fetch_json(url);
+    debug_log("All songs in playlist:", playlistId, data);
 
     const raw = Array.isArray(data.songs)
         ? data.songs
@@ -163,9 +157,6 @@ export async function getAllSongsInPlaylist(playlistId) {
 }
 
 /**
- * NEW:
- * get_song_by_id={songId}
- *
  * Expected shape (single track):
  * {
  *   "video_id": "{youtube video id}",
@@ -179,53 +170,50 @@ export async function getAllSongsInPlaylist(playlistId) {
  *   "added_by": "{user id}"
  * }
  */
-export async function getSongById(songId) {
+export async function get_song_by_id(songId) {
   const url = `${API_ROOT}?get_song_by_id=${encodeURIComponent(songId)}`;
-  const data = await fetchJson(url);
+  const data = await fetch_json(url);
 
-  apiLog("RAW SONG BY ID RESPONSE:", data);
+  debug_log("Raw song by ID response:", data);
   return data;
 }
 
-/**
- * add_played
- * ?add_played={videoId}&playlist_id={playlistId}
- *
- * Registers a valid play
- */
-export async function addPlayed(videoId, playlistId) {
-  if (!videoId || !playlistId) return;
 
-  try {
-    const body = new URLSearchParams({
-      add_played: videoId,
-      playlist_id: playlistId,
-    });
+// API?add_played={videoId}&playlist_id={playlistId}
+// Registers a valid play, and why tf is there no verification?
+export async function add_played(videoId, playlistId) {
+    if (!videoId || !playlistId) return;
 
-    const res = await fetch(ROOT, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-store",
-      credentials: "omit",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-        Accept: "application/json",
-      },
-      body,
-    });
+    try {
+        const body = new URLSearchParams({
+            add_played: videoId,
+            playlist_id: playlistId,
+        });
 
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}`);
-    }
+        const res = await fetch(ROOT, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-store",
+            credentials: "omit",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                Accept: "application/json",
+            },
+            body,
+        });
 
-    const data = await res.json();
-    if (data.code === "error") {
-      throw new Error(data.reason || "Unknown API error");
-    }
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+        }
 
-    apiLog("ADD_PLAYED:", videoId, playlistId, data);
-    return data;
+        const data = await res.json();
+        if (data.code === "error") {
+            throw new Error(data.reason || "Unknown API error");
+        }
+
+        debug_log("Add Played:", videoId, playlistId, data);
+        return data;
   } catch (err) {
-    apiWarn("add_played failed:", err);
+        debug_warn("add_played failed:", err);
   }
 }

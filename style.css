@@ -345,7 +345,7 @@ h1, h2, h3, .notification p {
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-    color: var(--secondary-text-color);
+    color: var(--dimmed);
 }
 
 #uploader > * {

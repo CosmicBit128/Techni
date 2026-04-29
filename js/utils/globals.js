@@ -1,5 +1,5 @@
-const API_ROOT = "https://adegdansk.pl/echo/techniplayer/controller/mytapi2.php";
-const DEBUG = false;
+export const API_ROOT = "https://adegdansk.pl/echo/techniplayer/controller/mytapi2.php";
+const DEBUG = true;
 
 export function debug_log(message) {
     if (DEBUG) { console.log(message); }
