@@ -223,7 +223,7 @@ h1, h2, h3, .notification p {
 
 .title {
     display: inline-block;
-    margin: 0;
+    margin: 0 6px;
     transform: translateY(6px);
     font-size: clamp(28px, 10vw, 80px);
     white-space: nowrap;
@@ -249,7 +249,6 @@ h1, h2, h3, .notification p {
         0 1.5px 0 color-mix(in oklab, black 22%, transparent),
         0 8px 18px color-mix(in oklab, var(--title-glow-1, #7ad3ff) 65%, transparent),
         0 20px 48px color-mix(in oklab, var(--title-glow-2, #c299ff) 55%, transparent);
-    animation: shine 14s linear infinite, hue-title 24s ease-in-out infinite alternate
 }
 
 .fx-title::before {
@@ -376,7 +375,7 @@ h1, h2, h3, .notification p {
     appearance: none;
     width: 100%;
     height: 6px;
-    background: linear-gradient( 90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+    background: linear-gradient( 90deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 0.1%);
     border-radius: 999px;
     border: none;
     outline: none;
