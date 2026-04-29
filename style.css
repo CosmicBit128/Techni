@@ -21,21 +21,21 @@
 
 
 /* KILL YOUTUBE */
-#yt-player-container #player .html5-video-player .ytp-unmute,
-#yt-player-container #player .html5-video-player .ytp-popup,
-#yt-player-container #player .html5-video-player .ytp-button.ytp-unmute,
-#yt-player-container
+#youtube-player #player .html5-video-player .ytp-unmute,
+#youtube-player #player .html5-video-player .ytp-popup,
+#youtube-player #player .html5-video-player .ytp-button.ytp-unmute,
+#youtube-player
   #player
   .html5-video-player
   .ytp-button.ytp-unmute-animated,
-#yt-player-container #player .html5-video-player .ytp-button.ytp-unmute-shrink,
-#yt-player-container
+#youtube-player #player .html5-video-player .ytp-button.ytp-unmute-shrink,
+#youtube-player
   #player
   .html5-video-player
   .ytp-player-content
   .ytp-timely-actions-content,
-#yt-player-container #player-controls,
-#yt-player-container #player .html5-video-player .ytp-caption-window-container {
+#youtube-player #player-controls,
+#youtube-player #player .html5-video-player .ytp-caption-window-container {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
