@@ -1,16 +1,16 @@
 export const API_ROOT = "https://adegdansk.pl/echo/techniplayer/controller/mytapi2.php";
 const DEBUG = true;
 
-export function debug_log(message) {
-    if (DEBUG) { console.log(message); }
+export function debug_log(...args) {
+    if (DEBUG) { console.log(...args); }
 }
 
-export function debug_warn(message) {
-    if (DEBUG) { console.warn(message); }
+export function debug_warn(...args) {
+    if (DEBUG) { console.warn(...args); }
 }
 
-export function debug_error(message) {
-    if (DEBUG) { console.error(message); }
+export function debug_error(...args) {
+    if (DEBUG) { console.error(...args); }
 }
 
 export function send_notif(title_text, message_text) {

@@ -23,6 +23,7 @@ window.addEventListener("load", () => {
     const slider = document.getElementById("seek");
     
     const song_cover = document.getElementById("song-cover");
+    const song_title = document.getElementById("song-title");
     const song_author = document.getElementById("song-author");
     const song_adder = document.getElementById("song-adder");
     const song_plays = document.getElementById("song-plays");
@@ -61,7 +62,16 @@ window.addEventListener("load", () => {
     });
 
     // Initialize session
-    const SID = init_session();
+    let sid, users, playlists;
+    init_session().then((data) => {
+        sid = data;
+    });
+    get_users().then((data) => {
+        users = data;
+    });
+    get_playlists().then((data) => {
+        playlists = data;
+    });
     
     const colorThief = new ColorThief();
     // const initArgs = {
@@ -75,8 +85,14 @@ window.addEventListener("load", () => {
     // };
     
     function load_song_data(song_id) {
-        let song_data = get_song_by_id()
-        song_author = song_data['']
+        get_song_by_id(song_id).then((song_data) => {
+
+            if (song_data.meta_data.cover_url) song_cover.src = song_data.meta_data.cover_url;
+            song_title.textContent = song_data.meta_data.title;
+            song_author.textContent = song_data.meta_data.author;
+            // song_adder.textContent = users[song_data.added_by];
+            // song_plays.textContent = song_data.
+        });
     }
 
     // function applyTrackToUI(track, autoplay) {
