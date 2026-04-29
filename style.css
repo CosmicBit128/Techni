@@ -147,6 +147,7 @@ h1, h2, h3, .notification p {
 
   /* also animate padding-bottom when lyrics open/close */
   transition:
+    height 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s,
     opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s,
     transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s,
     padding-bottom 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -187,8 +188,21 @@ h1, h2, h3, .notification p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
     gap: clamp(18px, 4vw, 28px);
     width: 100%;
+    transition: all 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s
+}
+
+.stack.hide {
+    height: 100svh;
+    justify-content: space-between;
+}
+.stack.hide > main {
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+.stack.hide > main > #player {
+    --coverW: 200px;
 }
 
 
@@ -448,4 +462,20 @@ h1, h2, h3, .notification p {
     justify-content: center;
     font: inherit;
     color: inherit;
+}
+
+/*
+* YouTube Player
+*/
+#youtube-player {
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+    background: black;
 }

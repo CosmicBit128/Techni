@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techniplayer</title>
+    <script id="www-widgetapi-script" type="text/javascript" src="https://www.youtube.com/s/player/8456c9de/www-widgetapi.vflset/www-widgetapi.js" async=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js" defer=""></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,23 +22,21 @@
                 </div>
             </div>
         </header>
-        <main class="container glass-card video">
+        <main class="container glass-card">
             <div id="player">
-                <img id="song-cover" src="https://i1.sndcdn.com/artworks-Pp1UmhjBpVrt-0-t500x500.jpg" alt="Song Cover">
+                <img id="song-cover" alt="Song Cover">
                 <section id="meta">
                     <div id="title-wrap" class="collapser">
-                        <h2 id="song-title">New Life</h2>
+                        <h2 id="song-title"></h2>
                     </div>
                     <div id="user-wrap" class="collapser">
                         <div id="uploader">
-                            <p id="song-author">Depeche</p>
+                            <p id="song-author"></p>
                             <p id="song-adder" class="pill">
                                 <img src="assets/user.svg">
-                                CosmicBit
                             </p>
                             <p id="song-plays" class="pill">
                                 <img src="assets/note.svg">
-                                143
                             </p>
                         </div>
                     </div>
@@ -54,13 +53,13 @@
                                 </a>
                             </button>
                             <div class="control-group">
-                                <button id="go-back" class="button" aria-label="Go Back">
+                                <button id="prev-song-btn" class="button" aria-label="Go Back">
                                     <img src="assets/back-arrow.svg">
                                 </button>
-                                <button id="pause" class="button" aria-label="Pause Song">
+                                <button id="pause-btn" class="button" aria-label="Play/Pause Song" data-state="paused">
                                     <img src="assets/play.svg">
                                 </button>
-                                <button id="skip" class="button" aria-label="Skip Song">
+                                <button id="next-song-btn" class="button" aria-label="Skip Song">
                                     <img src="assets/forward-arrow.svg">
                                 </button>
                             </div>
@@ -76,6 +75,9 @@
             </div>
         </main>
     </div>
+
+    <iframe id="youtube-player" frameborder="0"></iframe>
+
     <div id="notifications"></div>
 
     <script type="module" src="./js/main.js" defer></script>
