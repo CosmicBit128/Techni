@@ -129,37 +129,37 @@ function load_video_for_track(track, autoplay) {
 
 
 window.addEventListener("load", () => {
-    const titles         = document.getElementById("titles");
-    const slider         = document.getElementById("seek");
-    const elapsed        = document.getElementById("elapsed");
-    const remaining      = document.getElementById("remaining");
-    const prev_song_btn  = document.getElementById("prev-song-btn");
-    const pause_btn      = document.getElementById("pause-btn");
-    const next_song_btn  = document.getElementById("next-song-btn");
-    const return_latest  = document.getElementById("return-latest");
-    const history_wrap   = document.getElementById("history-wrap");
+    const titles = document.getElementById("titles");
+    const slider = document.getElementById("seek");
+    const elapsed = document.getElementById("elapsed");
+    const remaining = document.getElementById("remaining");
+    const prev_song_btn = document.getElementById("prev-song-btn");
+    const pause_btn = document.getElementById("pause-btn");
+    const next_song_btn = document.getElementById("next-song-btn");
+    const return_latest = document.getElementById("return-latest");
+    const history_wrap = document.getElementById("history-wrap");
     const open_video_btn = document.getElementById("open-video");
-    const song_cover     = document.getElementById("song-cover");
-    const song_title     = document.getElementById("song-title");
-    const song_author    = document.getElementById("song-author");
-    const song_adder     = document.getElementById("song-adder");
-    const song_plays     = document.getElementById("song-plays");
+    const song_cover = document.getElementById("song-cover");
+    const song_title = document.getElementById("song-title");
+    const song_author = document.getElementById("song-author");
+    const song_adder = document.getElementById("song-adder");
+    const song_plays = document.getElementById("song-plays");
 
     const assets = {
-        back:     "assets/back-arrow.svg",
-        forward:  "assets/forward-arrow.svg",
-        play:     "assets/play.svg",
-        pause:    "assets/pause.svg",
-        note:     "assets/note.svg",
-        user:     "assets/user.svg",
-        volume:   "assets/volume.svg",
+        back: "assets/back-arrow.svg",
+        forward: "assets/forward-arrow.svg",
+        play: "assets/play.svg",
+        pause: "assets/pause.svg",
+        note: "assets/note.svg",
+        user: "assets/user.svg",
+        volume: "assets/volume.svg",
         open_vid: "assets/open-vid.svg",
     };
 
-    let sid               = null;
-    let users             = [];
-    let all_songs         = [];
-    let pages             = [];
+    let sid = null;
+    let users = [];
+    let all_songs = [];
+    let pages = [];
     let selected_playlist = "3";
 
     let cursor = { page: 0, position: 0 };
@@ -183,8 +183,8 @@ window.addEventListener("load", () => {
     }
 
     function update_slider_gradient() {
-        const val     = Number(slider.value) || 0;
-        const max     = Number(slider.max)   || 1;
+        const val = Number(slider.value) || 0;
+        const max = Number(slider.max)   || 1;
         const percent = (val / max) * 100;
         slider.style.background =
             `linear-gradient(90deg, rgba(255,255,255,0.9) ${percent + 0.3}%, rgba(255,255,255,0.4) ${percent + 0.4}%)`;
