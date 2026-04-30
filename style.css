@@ -471,11 +471,11 @@ h1, h2, h3, .notification p {
     width: 100%;
     height: 100%;
     border: 0px;
-    pointer-events: none;
+    pointer-events: all;
     position: fixed;
     inset: 0;
     z-index: 0;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 300ms ease-out;
     background: black;
 }

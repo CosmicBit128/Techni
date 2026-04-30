@@ -399,7 +399,7 @@ window.addEventListener("load", () => {
     function load_current_song(autoplay = true) {
         if (!pages[cursor.page]) { debug_warn("No page at", cursor.page); return; }
         const song_index = pages[cursor.page][cursor.position];
-        const song       = all_songs[song_index];
+        const song = all_songs[song_index];
         if (!song) { debug_warn("No song at index", song_index); return; }
         play_song_by_id(song.video_id, autoplay);
     }
@@ -427,16 +427,16 @@ window.addEventListener("load", () => {
         const first_video_id = all_songs[random_index].video_id;
 
         // Init YouTube with real first video, no placeholder — matches original
-        if (!yt.ready || !yt.player) {
-            await load_youtube_api();
-            await init_youtube(first_video_id, on_youtube_state_change);
-        }
+        // if (!yt.ready || !yt.player) {
+        //     await load_youtube_api();
+        //     await init_youtube(first_video_id, on_youtube_state_change);
+        // }
 
         // Build shuffle
-        pages           = [create_page()];
-        cursor.page     = 0;
+        pages = [create_page()];
+        cursor.page = 0;
         cursor.position = 0;
-        latest.page     = 0;
+        latest.page = 0;
         latest.position = 0;
 
         // Point cursor at the song that was already loaded into the player
